@@ -1,12 +1,9 @@
 //記録する技の選択
-//var =
 
-var tmpdata1 = [30,35,56];
-data=40;
-tmpdata1.push(data);
-console.log(tmpdata1);
 //グラフの描写
-var config = {
+function draw(tmpdata){
+var ctx = document.getElementById("canvas").getContext("2d");
+var config = new Chart(ctx,{
 type: 'line',
 data: {
     labels: ["2016/12/1", "2016/12/2", "2016/12/3", "2016/12/4", "2016/12/5", "2016/12/6", "2016/12/7"],
@@ -24,42 +21,8 @@ data: {
         pointHoverBorderColor: "#3A7AC9",
         pointHoverBorderWidth: 2,
         tension: 0,
-        //data: [20, 18, 22, 27, 25, 24, 31]
-        data:tmpdata1
-     }//,
-    // {
-    //     label: "4bシャワー",
-    //     fill: false,
-    //     backgroundColor: "#FF0000",
-    //     borderWidth: 2,
-    //     borderColor: "#FF0000",
-    //     pointBorderColor: "#FF0000",
-    //     pointBackgroundColor: "#FF0000",
-    //     pointBorderWidth: 2,
-    //     pointHoverRadius: 5,
-    //     pointHoverBackgroundColor: "#FF0000",
-    //     pointHoverBorderColor: "#FF0000",
-    //     pointHoverBorderWidth: 2,
-    //     tension: 0,
-    //     data: [10, 28, 32, 44, 38, 42, 52]
-    // },
-    // {
-    //     label: "3bバッククロス",
-    //     fill: false,
-    //     backgroundColor: "#32CD32",
-    //     borderWidth: 2,
-    //     borderColor: "#32CD32",
-    //     pointBorderColor: "#32CD32",
-    //     pointBackgroundColor: "#32CD32",
-    //     pointBorderWidth: 2,
-    //     pointHoverRadius: 5,
-    //     pointHoverBackgroundColor: "#32CD32",
-    //     pointHoverBorderColor: "#32CD32",
-    //     pointHoverBorderWidth: 2,
-    //     tension: 0,
-    //     data: [6, 9, 10, 11, 9, 12, 10]
-    // }
-  ]
+        data:tmpdata
+     }]
   },
 options: {
    responsive: true,
@@ -87,9 +50,15 @@ options: {
       }]
    }
 }
+}
+)
 };
-//var cas_5b = new config;
-window.onload = function() {
-var ctx = document.getElementById("canvas").getContext("2d");
-window.myLine = new Chart(ctx, config);
-};
+
+var test = [20, 18, 22, 27, 25, 24, 31]
+draw(test);
+
+
+//window.onload = function() {
+//var ctx = document.getElementById("canvas").getContext("2d");
+//window.myLine = new Chart(ctx, );
+//};
