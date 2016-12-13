@@ -1,13 +1,13 @@
 //記録する技の選択
 
 //グラフの描写
-function draw(tmpdata){
+function draw(tmpdata, tmpdate){
 var ctx = document.getElementById("canvas").getContext("2d");
 var config = new Chart(ctx,{
 type: 'line',
 data: {
-    labels: ["2016/12/1", "2016/12/2", "2016/12/3", "2016/12/4", "2016/12/5", "2016/12/6", "2016/12/7"],
-    datasets: [{
+        labels: tmpdate,
+        datasets: [{
         label: "5bカスケード",
         fill: false,
         backgroundColor: "#3A7AC9",
@@ -53,12 +53,19 @@ options: {
 }
 )
 };
+var test = [20, 18, 22]
+var date = ["2016/12/1", "2016/12/2", "2016/12/3"]
+draw(test,date);
 
-var test = [20, 18, 22, 27, 25, 24, 31]
-draw(test);
+//日付取得
+var hiduke = new Date();
+var year = hiduke.getFullYear();
+var month = hiduke.getMonth()+1;
+var day = hiduke.getDate();
 
-
-//window.onload = function() {
-//var ctx = document.getElementById("canvas").getContext("2d");
-//window.myLine = new Chart(ctx, );
-//};
+//記録ボタンクリック時のアクション
+function add(){
+  test.push(document.kiroku.kaisuu.value);
+  date.push(year+"/"+month+"/"+day);
+  draw(test,date);
+}
