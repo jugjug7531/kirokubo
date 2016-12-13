@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ja">
+<head>
+   <meta charset="UTF-8">
+   <title>ジャグリング記録簿</title>
+   <script src="./script/Chart.min.js"></script>
+   <script src="jug.js"></script>
+</head>
+<body>
+  <h2>ジャグリング記録簿</h2>
+  <p>
+    技：<select name="waza">
+      <option value="5bカスケード">5bカスケード</option>
+      <option value="4bシャワー">4bシャワー</option>
+      <option value="3bバッククロス">3bバッククロス</option>
+    </select>
+  </p>
+  <p>
+    今日の最高キャッチ数：<input type="text" name="" value="20">回
+    <button type="button" name="button">記録！</button>
+  </p>
+   <canvas id="canvas" width="50" height="30"></canvas>
+</body>
+</html>
