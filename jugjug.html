@@ -2,23 +2,36 @@
 <html lang="ja">
 <head>
    <meta charset="UTF-8">
-   <title>ジャグリング記録簿</title>
+   <title>5bエンデュランス記録簿</title>
+   <!--
    <script src="./script/Chart.min.js"></script>
-   <script src="jug.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/store.js/1.3.20/store.min.js"></script>
+
+ -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.2/Chart.min.js"></script>
+   <!--日付のカレンダー表示 -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" >
+
 </head>
 <body>
-  <h2>ジャグリング記録簿</h2>
-  <p>
-    技：<select name="waza">
-      <option value="5bカスケード">5bカスケード</option>
-      <option value="4bシャワー">4bシャワー</option>
-      <option value="3bバッククロス">3bバッククロス</option>
-    </select>
-  </p>
-  <p>
-    今日の最高キャッチ数：<input type="text" name="" value="20">回
-    <button type="button" name="button">記録！</button>
-  </p>
-   <canvas id="canvas" width="50" height="30"></canvas>
+  <h2>5bエンデュランス記録簿</h2>
+  <h5>目指せ1000回越え！</h5>
+  <form name="kiroku" action="jugjug.html" method="post">
+    <p>
+      日付：<input type="text" value="" id="calender">
+    </p>
+    <p>
+      最高キャッチ数：
+      <input type="text" name="kaisuu">
+      <input type="text" name="dummy" style="display:none;">
+      回
+      <input type="button" id="addd" value="記録！" onclick="add()"></input>
+    </p>
+  </form>
+   <canvas id="canvas" style="width=100%, height:auto;"></canvas>
+   <script src="jug.js"></script>
 </body>
 </html>
