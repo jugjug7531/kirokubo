@@ -1,4 +1,3 @@
-
 //グラフの描写
 function draw(tmpdata, tmpdate){
 var ctx = document.getElementById("canvas").getContext("2d");
@@ -7,7 +6,7 @@ type: 'line',
 data: {
         labels: tmpdate,
         datasets: [{
-        label: "5bカスケード",
+        label: "最高記録",
         fill: false,
         backgroundColor: "#3A7AC9",
         borderWidth: 2,
@@ -40,7 +39,7 @@ options: {
          display: true,
          scaleLabel: {
             display: true,
-            labelString: 'キャッチ数',
+            labelString: '最高キャッチ数',
             fontFamily: 'monospace',
             fontSize: 14
          },
@@ -58,6 +57,7 @@ options: {
 };
 
 var test = [];
+var date2;
 
 //日付取得
 var hiduke = new Date();
@@ -69,17 +69,34 @@ var day = hiduke.getDate();
 $(function() {
   //ブラウザ再読み込み時にローカルストレージの中身を表示
     if (localStorage.getItem('database')) {
-      //localStorage.removeItem('database');
       test = JSON.parse(localStorage.getItem('database'));
       console.log(test);
       draw(test,array1);
     }
+  //最初は今日の日付を表示する
+  $("#calender").val(year+"/"+month+"/"+day);
+  //カレンダーで日付を選ぶ部分
   $("#calender").datepicker({
   onSelect: function(dateText, inst) {
-  //var date1 = dateText; // 08/13/2014の形
   var date2 = $(this).datepicker( 'getDate' ); //　Wed Aug 13 2014 00:00:00 GMT+0900　の形
-  $("#date").text(date2.getMonth()+1);
-  datechange(date2);
+    //未来の記録はできないようにする
+    if (date2.getFullYear() > new Date().getFullYear()){
+      //未来の年を選択した場合
+      $('#future').text("未来の記録はできないよ！！").css("color","red");
+      $('#add').prop('disabled',true);
+    }else if (date2.getFullYear() == new Date().getFullYear() && date2.getMonth() > new Date().getMonth()){
+      //今年かつ来月以降を選択した場合
+      $('#future').text("未来の記録はできないよ！！").css("color","red");
+      $('#add').prop('disabled',true);
+    }else if(date2.getFullYear() == new Date().getFullYear() && date2.getMonth() == new Date().getMonth() && date2.getDate() > new Date().getDate()){
+      //今年かつ今月かつ明日以降を選択した場合
+      $('#future').text("未来の記録はできないよ！！").css("color","red");
+      $('#add').prop('disabled',true);
+    } else{
+      $('#future').text("");
+      $('#add').prop('disabled',false);
+      datechange(date2);
+    }
   }
   });
 });
@@ -92,16 +109,26 @@ for (var i = 0; i < array1.length; i++) {
 draw(test,array1);
 
 //記録ボタンクリック時のアクション
-function add(){
-  test.push(document.kiroku.kaisuu.value);
-  //localStorage.setItem('database',JSON.stringify(test)); //ローカルストレージに保存
-  //console.log(localStorage.getItem('database'));
-  draw(test,array1);
-}
-$('#addd').click(function(){
+$('#add').click(function(){
+  console.log(year,month,day);
+  test.splice(day-1,1);//データ削除
+  test.splice(day-1,0,document.kiroku.kaisuu.value);//データ追加
   localStorage.setItem('database',JSON.stringify(test)); //ローカルストレージに保存
   console.log(localStorage.getItem('database'));
-})
+  draw(test,array1);
+});
+
+//消去ボタンクリック時のアクション
+$('#clear').click(function(){
+  if(!confirm('本当に消去しますか？')){
+    return false;
+  }else{
+    localStorage.clear();
+    $('#clear1').text("消去しました！")
+    test = [];
+    draw(test,array1);
+  }
+});
 
 //横軸グラフの日付変更
 function datechange(hiduke){
@@ -117,5 +144,9 @@ function datechange(hiduke){
   }
   for (var i = 0; i < loop; i++) {
     array1[i] = year + "/" + month + "/" + (i+1);
+  }
+  //ローカルストレージがなければ新しくデータ配列作る
+  if(!localStorage.getItem('database')){
+    test = new Array(loop);
   }
 }
