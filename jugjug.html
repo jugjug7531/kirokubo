@@ -21,6 +21,7 @@
   <h5>目指せ1000回越え！</h5>
   <form name="kiroku" action="jugjug.html" method="post">
     <!--日付を入力する欄-->
+    <p>登録日：<span id="tourokuday"></span></p>
     <p>
       日付：<input type="text" value="" id="calender">
       <span id="future"></span>
@@ -33,6 +34,7 @@
     <!--入力する歳の注意点-->
     <ul style="font-size:10pt">
       <li>投げてない日は"null"と書いて記録してください。</li>
+      <li>登録月より前の日には記録できません。</li>
     </ul>
 <!--グラフ表示-->
   </form>
