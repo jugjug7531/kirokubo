@@ -20,18 +20,28 @@
   <h2>5bエンデュランス記録簿</h2>
   <h5>目指せ1000回越え！</h5>
   <form name="kiroku" action="jugjug.html" method="post">
+    <!--日付を入力する欄-->
     <p>
       日付：<input type="text" value="" id="calender">
+      <span id="future"></span>
     </p>
+    <!--最高記録を入力する欄-->
     <p>
-      最高キャッチ数：
-      <input type="text" name="kaisuu">
-      <input type="text" name="dummy" style="display:none;">
-      回
-      <input type="button" id="addd" value="記録！" onclick="add()"></input>
+      最高キャッチ数：<input type="text" name="kaisuu">回
+      <input type="button" id="add" value="記録！"></input>
     </p>
+    <!--入力する歳の注意点-->
+    <ul style="font-size:10pt">
+      <li>投げてない日は"null"と書いて記録してください。</li>
+    </ul>
+<!--グラフ表示-->
   </form>
    <canvas id="canvas" style="width=100%, height:auto;"></canvas>
-   <script src="jug.js"></script>
+<!--データ消去ボタン-->
+   <p>
+     <h5 id="clear1"></h5>
+     <input type="button" id="clear" value="データ消去">
+   </p>
+  <script src="jug.js"></script>
 </body>
 </html>
