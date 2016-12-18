@@ -163,18 +163,23 @@ $(function() {
 
 //記録ボタンクリック時のアクション
 $('#add').click(function(){
+  $('#clear1').text("");
   //ローカルストレージがなければ新しくデータ配列作る
   if(!localStorage.getItem('database')){
     dayLongCheck(month);
     test[k] = new Array(loop);
   }
-
-  // console.log(year,month,day);
-  // console.log("選択日："year*12+month,"現選択日：");
   //データ登録して再描写する部分
-  test[k].splice(day-1,1);//データ削除
-  test[k].splice(day-1,0,document.kiroku.kaisuu.value);//データ追加
-  localStorage.setItem('database',JSON.stringify(test)); //ローカルストレージに保存
+    //データ削除
+  test[k].splice(day-1,1);
+    //データ追加
+  if(document.kiroku.kaisuu.value == 0 || document.kiroku.kaisuu.value == null){
+    test[k].splice(day-1,0,null);
+  }else{
+    test[k].splice(day-1,0,document.kiroku.kaisuu.value);
+  }
+  //ローカルストレージにデータ保存
+  localStorage.setItem('database',JSON.stringify(test));
   draw(test[k],array1);
 });
 
@@ -184,7 +189,7 @@ $('#clear').click(function(){
     return false;
   }else{
     localStorage.clear();
-    $('#clear1').text("消去しました！")
+    $('#clear1').text("消去しました！");
     test[k] = [];
     draw(test[k],array1);
   }
