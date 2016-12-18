@@ -3,18 +3,12 @@
 <head>
    <meta charset="UTF-8">
    <title>5bエンデュランス記録簿</title>
-   <!--
-   <script src="./script/Chart.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/store.js/1.3.20/store.min.js"></script>
-
- -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.2/Chart.min.js"></script>
    <!--日付のカレンダー表示 -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+   <script src="script/jquery-3.1.1.min.js"></script>
    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
-   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" >
-
+   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/smoothness/jquery-ui.css" >
 </head>
 <body>
   <h2>5bエンデュランス記録簿</h2>
@@ -33,8 +27,8 @@
     </p>
     <!--入力する歳の注意点-->
     <ul style="font-size:10pt">
-      <li>投げてない日は"null"と書いて記録してください。</li>
-      <li>登録月より前の日には記録できません。</li>
+      <li>"空白" or "0" で記録すると、空白として記録されます。</li>
+      <li>登録した月より前の月には記録できません。</li>
     </ul>
 <!--グラフ表示-->
   </form>
