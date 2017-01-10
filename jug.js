@@ -183,7 +183,7 @@ $('#clear').click(function(){
   if(!confirm('本当に消去しますか？')){
     return false;
   }else{
-    localStorage.clear();
+    localStorage.removeItem('database');
     $('#clear1').text("消去しました！")
     test[k] = [];
     draw(test[k],array1);
